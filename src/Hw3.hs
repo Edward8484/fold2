@@ -165,11 +165,13 @@ removeZero ds
 bigAdd :: BigInt -> BigInt -> BigInt
 bigAdd l1 l2     = removeZero res
   where
-    (l1', l2')   = padZero l1 l2
-    res          = foldLeft f base args
-    f a x        = error "TBD:bigAdd:f"
-    base         = error "TBD:bigAdd:base"
-    args         = error "TBD:bigAdd:args"
+    (l1', l2')                = padZero l1 l2
+    res                       = foldLeft f base args
+    f (carry:sum) (x1,x2) = [div temp 10] ++ [mod temp 10] ++ sum
+      where
+        temp = x + x2 + carry
+    base         = [0]
+    args         = reverse (zip l1' l2')
 
 
 --------------------------------------------------------------------------------
