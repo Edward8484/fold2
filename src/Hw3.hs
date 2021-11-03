@@ -201,5 +201,5 @@ bigMul l1 l2 = res
   where
     (_, res) = foldLeft f base args
     f a x    = error "TBD:bigMul:f"
-    base     = error "TBD:bigMul:base"
-    args     = error "TBD:bigMul:args"
+    base     = []
+    args     = 12
