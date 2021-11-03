@@ -131,7 +131,9 @@ type BigInt = [Int]
 
 padZero :: BigInt -> BigInt -> (BigInt, BigInt)
 padZero l1 l2
-     |
+     | length l1 == length l2 = (l1, l2)
+     | length l1 > length l2  = (l1 (clone 0 (length l1 - length l2)) ++ l2)
+     | length l1 < length l2  = ((clone 0 (length l2 - length l1)) ++ l1, l2)
 
 --------------------------------------------------------------------------------
 -- | `removeZero ds` strips out all leading `0` from the left-side of `ds`.
