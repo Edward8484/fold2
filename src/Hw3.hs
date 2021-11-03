@@ -147,6 +147,7 @@ padZero l1 l2 = if length l1 < length l2
 -- []
 
 removeZero :: BigInt -> BigInt
+removeZero []            = []
 removeZero ds
   | d == 0    = removeZero ds
   | otherwise = (d:ds)
