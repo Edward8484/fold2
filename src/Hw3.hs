@@ -130,7 +130,9 @@ type BigInt = [Int]
 -- [1,0,0,2] [0,0,9,9]
 
 padZero :: BigInt -> BigInt -> (BigInt, BigInt)
-padZero l1 l2 = error "TBD:padZero"
+padZero l1 l2 = if length l1 < length l2
+     then (l2, clone 0 (length l2 - length l1) ++ l1)
+     else (clone 0 (length l1 - length l2) ++ l2, l1)
 
 --------------------------------------------------------------------------------
 -- | `removeZero ds` strips out all leading `0` from the left-side of `ds`.
@@ -145,7 +147,9 @@ padZero l1 l2 = error "TBD:padZero"
 -- []
 
 removeZero :: BigInt -> BigInt
-removeZero ds = error "TBD:removeZero"
+removeZero ds
+     | x == 0    = xs
+     | otherwise = [x] ++ xs
 
 
 --------------------------------------------------------------------------------
