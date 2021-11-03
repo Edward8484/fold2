@@ -61,7 +61,7 @@ pipe :: [(a -> a)] -> (a -> a)
 pipe fs   = foldLeft f base fs
   where
     f a x = a . x
-    base  = \x => x
+    base  = \x -> x
 
 --------------------------------------------------------------------------------
 -- | `sepConcat sep [s1,...,sn]` returns `s1 ++ sep ++ s2 ++ ... ++ sep ++ sn`
