@@ -79,9 +79,9 @@ sepConcat :: String -> [String] -> String
 sepConcat sep []     = ""
 sepConcat sep (x:xs) = foldLeft f base l
   where
-    f a x            = error "TBD:sepConcat:f"
-    base             = error "TBD:sepConcat:base"
-    l                = error "TBD:l"
+    f a x            = a ++ sep ++ x
+    base             = x
+    l                = xs
 
 intString :: Int -> String
 intString = show
@@ -112,7 +112,9 @@ stringOfList f xs = error "TBD:stringOfList"
 -- ["foo", "foo"]
 
 clone :: a -> Int -> [a]
-clone x n = error "TBD:clone"
+clone x n = 
+     | n <= 0    = []
+     | otherwise = x:(clone x (n-1))
 
 type BigInt = [Int]
 
