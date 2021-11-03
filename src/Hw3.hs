@@ -148,9 +148,9 @@ padZero l1 l2 = if length l1 < length l2
 
 removeZero :: BigInt -> BigInt
 removeZero []            = []
-removeZero ds
-  | d == 0    = removeZero ds
-  | otherwise = (d:ds)
+removeZero (x:xs)
+  | x == 0    = removeZero xs
+  | otherwise = (x:xs)
 
 
 --------------------------------------------------------------------------------
@@ -169,7 +169,7 @@ bigAdd l1 l2     = removeZero res
     res                       = foldLeft f base args
     f (carry:sum) (x1,x2) = [div temp 10] ++ [mod temp 10] ++ sum
       where
-        temp = x + x2 + carry
+        temp = x1 + x2 + carry
     base         = [0]
     args         = reverse (zip l1' l2')
 
@@ -182,7 +182,10 @@ bigAdd l1 l2     = removeZero res
 -- [8,9,9,9,1]
 
 mulByDigit :: Int -> BigInt -> BigInt
-mulByDigit i n = error "TBD:mulByDigit"
+mulByDigit i n 
+     | i == 0    = []
+     | i == 1    = n
+     | otherwise = bigAdd (mulByDigit (i - 1) n) n
 
 --------------------------------------------------------------------------------
 -- | `bigMul n1 n2` returns the `BigInt` representing the product of `n1` and `n2`.
