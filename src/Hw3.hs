@@ -112,7 +112,7 @@ stringOfList f xs = error "TBD:stringOfList"
 -- ["foo", "foo"]
 
 clone :: a -> Int -> [a]
-clone x n = 
+clone x n 
      | n <= 0    = []
      | otherwise = x:(clone x (n-1))
 
