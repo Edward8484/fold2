@@ -204,6 +204,6 @@ bigMul :: BigInt -> BigInt -> BigInt
 bigMul l1 l2 = res
   where
     res = foldLeft f base args
-    f a x    = error "TBD:bigMul:f"
+    f a x    = bigAdd(a ++ [0])(mulByDigit x l1)
     base     = []
-    args     = reverse l1
+    args     = l2
