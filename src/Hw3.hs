@@ -131,9 +131,12 @@ type BigInt = [Int]
 
 padZero :: BigInt -> BigInt -> (BigInt, BigInt)
 padZero l1 l2
-     | length l1 == length l2 = (l1, l2)
-     | length l1 > length l2  = (l1 ,(clone 0 (length l1 - length l2)) ++ l2)
-     | length l1 < length l2  = ((clone 0 (length l2 - length l1)) ++ l1, l2)
+          | ss == sb = (l1, l2)
+          | ss > sb  = (l1 ,(clone 0 (ss - sb)) ++ l2)
+          | ss < sb  = ((clone 0 (sb - ss)) ++ l1, l2)
+     where
+          ss = length l1
+          sb = length l2
 
 --------------------------------------------------------------------------------
 -- | `removeZero ds` strips out all leading `0` from the left-side of `ds`.
@@ -203,4 +206,4 @@ bigMul l1 l2 = res
     res = foldLeft f base args
     f a x    = error "TBD:bigMul:f"
     base     = []
-    args     = 12
+    args     = reverse l1
